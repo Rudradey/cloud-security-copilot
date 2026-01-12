@@ -109,9 +109,28 @@ Copy code
 
 ---
 
+🔑 Environment Setup (VERY IMPORTANT)
+
+This project does **NOT** use `aws configure`.
+
+All credentials are loaded from a `.env` file.
+
+---
+
+### 1️⃣ Create `.env` file
+
+Create a file named `.env` in the project root:
+
+cloud-security-copilot/.env
+
+yaml
+Copy code
+
+---
+
 ### 2️⃣ Add your credentials
 
-```env
+.env
 # AWS credentials (READ-ONLY recommended)
 AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY
 AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_KEY
@@ -119,18 +138,105 @@ AWS_DEFAULT_REGION=ap-south-1
 
 # LLM provider
 OPENAI_API_KEY=YOUR_OPENAI_API_KEY
-⚠️ This file is local only
-⚠️ It is ignored by .gitignore
-⚠️ Every user must create their own .env
+⚠️ Important
+
+This file is local only
+
+It is ignored by .gitignore
+
+Every user must create their own .env file
 
 🔐 Required AWS Permissions
 Your AWS credentials must have read-only access.
 
-Recommended policies:
-
+Recommended AWS managed policies:
 IAMReadOnlyAccess
 
 OR SecurityAudit
 
 ❌ Do NOT use admin credentials
+
+▶️ How to Run the Project
+1️⃣ Clone the repository
+bash
+Copy code
+git clone https://github.com/Rudradey/cloud-security-copilot.git
+cd cloud-security-copilot
+2️⃣ Create and activate virtual environment
+Windows
+
+powershell
+Copy code
+python -m venv venv
+venv\Scripts\activate
+Linux / macOS
+
+bash
+Copy code
+python3 -m venv venv
+source venv/bin/activate
+3️⃣ Install dependencies
+bash
+Copy code
+pip install -r requirements.txt
+pip install -r backend/requirements.txt
+pip install -r frontend/requirements.txt
+4️⃣ Run the application
+Option A — Manual (2 terminals)
+Terminal 1 — Backend
+
+bash
+Copy code
+uvicorn backend.main:app --reload
+Terminal 2 — Frontend
+
+bash
+Copy code
+streamlit run frontend/streamlit_app.py
+Option B — Windows (Recommended)
+powershell
+Copy code
+.\run_dev.ps1
+This starts both backend and frontend automatically.
+
+🖥️ Using the Application
+Open the Streamlit UI in your browser
+
+Click Start IAM Scan
+
+Wait for scan completion
+
+View:
+
+IAM roles
+
+Policy risk scores
+
+Security findings
+
+Click Explain Findings to get AI-generated explanations and secure policy suggestions
+
+👉 No manual input is required in the UI.
+
+🧠 How Credentials Are Used
+AWS credentials are loaded from .env
+
+LLM API key is loaded from .env
+
+python-dotenv loads environment variables
+
+boto3 automatically uses them
+
+Credentials are never logged or exposed
+
+This design is secure for local development and demos.
+
+📌 Disclaimer
+This project is for educational and portfolio purposes.
+
+Do not run against production AWS accounts without proper authorization.
+
+👤 Author
+Rudra Dey
+Cybersecurity | Cloud Security | AI Systems
 
