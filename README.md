@@ -158,9 +158,9 @@ OR SecurityAudit
 
 ---
 
-##
 
-▶️ How to Run the Project
+
+## ▶️ How to Run the Project
 
 1️⃣ Clone the repository
 bash
@@ -209,9 +209,8 @@ This starts both backend and frontend automatically.
 
 
 
-##
 
-🖥️ Using the Application
+## 🖥️ Using the Application
 Open the Streamlit UI in your browser
 
 Click Start IAM Scan
@@ -230,8 +229,8 @@ Click Explain Findings to get AI-generated explanations and secure policy sugges
 
 👉 No manual input is required in the UI.
 
-##
-🧠 How Credentials Are Used
+
+## 🧠 How Credentials Are Used
 AWS credentials are loaded from .env
 
 LLM API key is loaded from .env
@@ -244,15 +243,15 @@ Credentials are never logged or exposed
 
 This design is secure for local development and demos.
 
-##
-📌 Disclaimer
+
+## 📌 Disclaimer
 This project is for educational and portfolio purposes.
 
 Do not run against production AWS accounts without proper authorization.
 
 
-##
-👤 Author
+
+## 👤 Author
 Rudra Dey
 Cybersecurity | Cloud Security | AI Systems
 
