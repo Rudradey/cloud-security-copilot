@@ -138,7 +138,7 @@ OR SecurityAudit
 1️⃣ Clone the repository
 bash
 Copy code
-git clone https://github.com/<your-username>/cloud-security-copilot.git
+git clone https://github.com/<Rudradey>/cloud-security-copilot.git
 cd cloud-security-copilot
 2️⃣ Create and activate virtual environment
 Windows
