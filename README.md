@@ -166,9 +166,6 @@ OR SecurityAudit
 
 1️⃣ Clone the repository
 
-bash
-
-Copy code
 
 git clone https://github.com/Rudradey/cloud-security-copilot.git
 
@@ -176,15 +173,7 @@ cd cloud-security-copilot
 
 
 
-
 2️⃣ Create and activate virtual environment
-
-Windows
-
-
-powershell
-
-Copy code
 
 python -m venv venv
 
@@ -194,30 +183,20 @@ Linux / macOS
 
 
 
-
-bash
-
-Copy code
-
 python3 -m venv venv
 
 source venv/bin/activate
 
 
 
-
 3️⃣ Install dependencies
 
-bash
-
-Copy code
 
 pip install -r requirements.txt
 
 pip install -r backend/requirements.txt
 
 pip install -r frontend/requirements.txt
-
 
 
 
@@ -228,19 +207,10 @@ Option A — Manual (2 terminals)
 Terminal 1 — Backend
 
 
-bash
-
-Copy code
 
 uvicorn backend.main:app --reload
 
 Terminal 2 — Frontend
-
-
-
-bash
-
-Copy code
 
 streamlit run frontend/streamlit_app.py
 
@@ -248,17 +218,10 @@ streamlit run frontend/streamlit_app.py
 
 Option B — Windows (Recommended)
 
-powershell
-
-Copy code
 
 .\run_dev.ps1
 
 This starts both backend and frontend automatically.
-
-
-
-
 
 
 ## 🖥️ Using the Application
