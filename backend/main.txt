@@ -1,0 +1,94 @@
+import sys
+import os
+from pathlib import Path
+
+# --- THE PATH FIX ---
+# This line adds the current directory (backend) to the Python Search Path
+# This is what stops the "ModuleNotFoundError: No module named 'services'"
+current_file = Path(__file__).resolve()
+backend_dir = current_file.parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
+# --------------------
+
+import uuid
+import logging
+from datetime import datetime
+from typing import Dict, Any
+
+from fastapi import FastAPI, HTTPException, status, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+
+# Now these imports will work perfectly!
+from services.scan_service import run_iam_scan
+from services.explain_service import explain_scan_results
+from schemas.explain_response import ExplainResponse
+
+# Logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
+logger = logging.getLogger("cloud-security-copilot")
+
+app = FastAPI(
+    title="AI-Powered Cloud Security Copilot",
+    version="1.1.0",
+    description="Enterprise-grade AWS IAM security analysis using AI + RAG"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+jobs_db: Dict[str, Dict[str, Any]] = {}
+
+class ScanJobStatus(BaseModel):
+    job_id: str
+    status: str
+    message: str
+    created_at: datetime
+
+class ExplainRequest(BaseModel):
+    scan_id: str = Field(..., description="Completed scan job ID")
+
+def run_scan_task(job_id: str):
+    try:
+        logger.info(f"Scan started: {job_id}")
+        results = run_iam_scan()
+        jobs_db[job_id].update({
+            "status": "completed",
+            "data": results,
+            "finished_at": datetime.utcnow()
+        })
+        logger.info(f"Scan completed: {job_id}")
+    except Exception as e:
+        logger.exception("Scan failed")
+        jobs_db[job_id]["status"] = "failed"
+        jobs_db[job_id]["error"] = str(e)
+
+@app.get("/health", tags=["system"])
+def health():
+    return {"status": "ok", "time": datetime.utcnow()}
+
+@app.post("/scan", response_model=ScanJobStatus, status_code=status.HTTP_202_ACCEPTED, tags=["security"])
+def start_scan(background_tasks: BackgroundTasks):
+    job_id = str(uuid.uuid4())
+    jobs_db[job_id] = {"status": "in_progress", "data": None, "created_at": datetime.utcnow()}
+    background_tasks.add_task(run_scan_task, job_id)
+    return {"job_id": job_id, "status": "in_progress", "message": "IAM scan started", "created_at": jobs_db[job_id]["created_at"]}
+
+@app.get("/scan/{job_id}", tags=["security"])
+def get_scan(job_id: str):
+    job = jobs_db.get(job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+    return job
+
+@app.post("/explain", response_model=ExplainResponse, tags=["ai"])
+def explain(request: ExplainRequest):
+    job = jobs_db.get(request.scan_id)
+    if not job or job["status"] != "completed":
+        raise HTTPException(status_code=400, detail="Scan not completed or not found")
+    return explain_scan_results(job["data"])
