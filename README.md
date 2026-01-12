@@ -174,44 +174,89 @@ git clone https://github.com/Rudradey/cloud-security-copilot.git
 
 cd cloud-security-copilot
 
+
+
+
 2️⃣ Create and activate virtual environment
+
 Windows
 
+
 powershell
+
 Copy code
+
 python -m venv venv
+
 venv\Scripts\activate
+
 Linux / macOS
 
+
+
+
 bash
+
 Copy code
+
 python3 -m venv venv
+
 source venv/bin/activate
 
+
+
+
 3️⃣ Install dependencies
+
 bash
+
 Copy code
+
 pip install -r requirements.txt
+
 pip install -r backend/requirements.txt
+
 pip install -r frontend/requirements.txt
 
+
+
+
 4️⃣ Run the application
+
 Option A — Manual (2 terminals)
+
 Terminal 1 — Backend
 
-bash
-Copy code
-uvicorn backend.main:app --reload
-Terminal 2 — Frontend
 
 bash
+
 Copy code
+
+uvicorn backend.main:app --reload
+
+Terminal 2 — Frontend
+
+
+
+bash
+
+Copy code
+
 streamlit run frontend/streamlit_app.py
+
+
+
 Option B — Windows (Recommended)
+
 powershell
+
 Copy code
+
 .\run_dev.ps1
+
 This starts both backend and frontend automatically.
+
+
 
 
 
@@ -219,45 +264,63 @@ This starts both backend and frontend automatically.
 ## 🖥️ Using the Application
 Open the Streamlit UI in your browser
 
+
 Click Start IAM Scan
+
 
 Wait for scan completion
 
+
 View:
+
 
 IAM roles
 
+
 Policy risk scores
+
 
 Security findings
 
+
 Click Explain Findings to get AI-generated explanations and secure policy suggestions
 
+
 👉 No manual input is required in the UI.
+
 
 
 ## 🧠 How Credentials Are Used
 AWS credentials are loaded from .env
 
+
 LLM API key is loaded from .env
+
 
 python-dotenv loads environment variables
 
+
 boto3 automatically uses them
+
 
 Credentials are never logged or exposed
 
+
 This design is secure for local development and demos.
+
 
 
 ## 📌 Disclaimer
 This project is for educational and portfolio purposes.
 
+
 Do not run against production AWS accounts without proper authorization.
+
 
 
 
 ## 👤 Author
 Rudra Dey
+
 Cybersecurity | Cloud Security | AI Systems
 
