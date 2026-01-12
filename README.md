@@ -133,7 +133,9 @@ Copy code
 .env
 # AWS credentials (READ-ONLY recommended)
 AWS_ACCESS_KEY_ID=YOUR_AWS_ACCESS_KEY
+
 AWS_SECRET_ACCESS_KEY=YOUR_AWS_SECRET_KEY
+
 AWS_DEFAULT_REGION=ap-south-1
 
 # LLM provider
@@ -163,9 +165,13 @@ OR SecurityAudit
 ## ▶️ How to Run the Project
 
 1️⃣ Clone the repository
+
 bash
+
 Copy code
+
 git clone https://github.com/Rudradey/cloud-security-copilot.git
+
 cd cloud-security-copilot
 
 2️⃣ Create and activate virtual environment
