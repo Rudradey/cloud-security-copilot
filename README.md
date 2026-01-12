@@ -157,11 +157,13 @@ OR SecurityAudit
 ❌ Do NOT use admin credentials
 
 ▶️ How to Run the Project
+
 1️⃣ Clone the repository
 bash
 Copy code
 git clone https://github.com/Rudradey/cloud-security-copilot.git
 cd cloud-security-copilot
+
 2️⃣ Create and activate virtual environment
 Windows
 
@@ -175,12 +177,14 @@ bash
 Copy code
 python3 -m venv venv
 source venv/bin/activate
+
 3️⃣ Install dependencies
 bash
 Copy code
 pip install -r requirements.txt
 pip install -r backend/requirements.txt
 pip install -r frontend/requirements.txt
+
 4️⃣ Run the application
 Option A — Manual (2 terminals)
 Terminal 1 — Backend
@@ -198,6 +202,7 @@ powershell
 Copy code
 .\run_dev.ps1
 This starts both backend and frontend automatically.
+
 
 🖥️ Using the Application
 Open the Streamlit UI in your browser
@@ -218,6 +223,7 @@ Click Explain Findings to get AI-generated explanations and secure policy sugges
 
 👉 No manual input is required in the UI.
 
+
 🧠 How Credentials Are Used
 AWS credentials are loaded from .env
 
@@ -231,10 +237,13 @@ Credentials are never logged or exposed
 
 This design is secure for local development and demos.
 
+
 📌 Disclaimer
 This project is for educational and portfolio purposes.
 
 Do not run against production AWS accounts without proper authorization.
+
+
 
 👤 Author
 Rudra Dey
