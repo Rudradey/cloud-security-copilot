@@ -156,6 +156,10 @@ OR SecurityAudit
 
 ❌ Do NOT use admin credentials
 
+---
+
+##
+
 ▶️ How to Run the Project
 
 1️⃣ Clone the repository
@@ -204,6 +208,9 @@ Copy code
 This starts both backend and frontend automatically.
 
 
+
+##
+
 🖥️ Using the Application
 Open the Streamlit UI in your browser
 
@@ -223,7 +230,7 @@ Click Explain Findings to get AI-generated explanations and secure policy sugges
 
 👉 No manual input is required in the UI.
 
-
+##
 🧠 How Credentials Are Used
 AWS credentials are loaded from .env
 
@@ -237,14 +244,14 @@ Credentials are never logged or exposed
 
 This design is secure for local development and demos.
 
-
+##
 📌 Disclaimer
 This project is for educational and portfolio purposes.
 
 Do not run against production AWS accounts without proper authorization.
 
 
-
+##
 👤 Author
 Rudra Dey
 Cybersecurity | Cloud Security | AI Systems
