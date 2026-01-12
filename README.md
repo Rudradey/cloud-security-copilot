@@ -134,6 +134,12 @@ OR SecurityAudit
 
 ❌ Do NOT use admin credentials
 
+
+
+
+
+
+
 ▶️ How to Run the Project
 1️⃣ Clone the repository
 bash
@@ -209,17 +215,6 @@ Credentials are never logged or exposed
 
 This design is secure for local development and demos.
 
-📁 Project Structure (Simplified)
-graphql
-Copy code
-cloud-security-copilot/
-├── backend/        # FastAPI backend, IAM scanning, AI logic
-├── frontend/       # Streamlit UI
-├── knowledge_base/ # Security knowledge for RAG
-├── .env            # Local only (ignored by git)
-├── .gitignore
-├── README.md
-└── run_dev.ps1     # One-command dev startup (Windows)
 📌 Disclaimer
 This project is for educational and portfolio purposes.
 
